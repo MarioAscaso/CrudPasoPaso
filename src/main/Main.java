@@ -1,0 +1,84 @@
+package main;
+
+import input.Input;
+import output.Output;
+import student.Student;
+import validator.Validator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static final int REGISTER = 1;
+    public static final int OUT = 5;
+
+    private static List<Student> students;
+
+    public static void main(String[] args) {
+        students = new ArrayList<>();
+        int optionMenu;
+        do {
+            optionMenu = getOpcionMenu();
+            action(optionMenu);
+        } while (!Validator.userWantsLogOut(optionMenu));
+    }
+
+    private static int getOpcionMenu() {
+        int optionMenu;
+        do {
+            optionMenu = showAndAskOption();
+        } while (!Validator.validarOpcionMenu(optionMenu));
+        return optionMenu;
+    }
+
+    private static int showAndAskOption(){
+        Output.showMenu();
+        return Input.getValueInt();
+    }
+
+    private static void action(int opcionMenu){
+        switch (opcionMenu) {
+            case REGISTER: registerStudent();
+                break;
+            case OUT: Output.logout();
+                break;
+            default:
+        }
+    }
+
+    private static void registerStudent() {
+        Object[] data = askData();
+        students.add(new Student((String) data[0], (String) data[1], (int) data[2], (String) data[3], (String) data[4], (float)data[5], (String) data[6], (float) data[7]));
+    }
+
+    private static Object[] askData() {
+        Object[] data = new Object[8];
+        Output.askDNI();
+        String DNI = Input.getText();
+        data[0] = DNI;
+        Output.askCompleteName();
+        String name = Input.getText();
+        data[1] = name;
+        Output.askAge();
+        int age = Input.getValueInt();
+        data[2] = age;
+        Output.askBirthday();
+        String birthday = Input.getText();
+        data[3] = birthday;
+        Output.askSubject();
+        String subject1 = Input.getText();
+        data[4] = subject1;
+        Output.askMark();
+        float mark1 = Input.getValueFloat();
+        data[5] = mark1;
+        Output.askSubject();
+        String subject2 = Input.getText();
+        data[6] = subject2;
+        Output.askMark();
+        float mark2 = Input.getValueFloat();
+        data[7] = mark2;
+
+        return data;
+    }
+
+}
