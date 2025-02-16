@@ -22,10 +22,16 @@ public class Main {
     public static void main(String[] args) {
         students = new ArrayList<>();
         int optionMenu;
+        boolean userWantsQuit = false;
         do {
             optionMenu = getOpcionMenu();
-            action(optionMenu);
-        } while (!Validator.userWantsLogOut(optionMenu));
+            if (Validator.userWantsLogOut(optionMenu)) {
+                Output.logout();
+                userWantsQuit = true;
+            } else {
+                action(optionMenu);
+            }
+        } while (!userWantsQuit);
     }
 
     private static int getOpcionMenu() {
@@ -54,10 +60,8 @@ public class Main {
                 break;
             case MODIFY: modificateMark();
                 break;
-            case OUT:
-                Output.logout();
-                break;
             default:
+                break;
         }
     }
 
