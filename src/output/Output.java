@@ -9,6 +9,7 @@ public class Output {
                 
                 1. - DAR DE ALTA ALUMNO
                 2. - LISTAR ALUMNOS
+                3. - DAR DE BAJA ALUMNO
                 5. - SALIR
                 
                 ELIJA OPCIÓN A REALIZAR:""");
