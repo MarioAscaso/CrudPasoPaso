@@ -25,6 +25,10 @@ public class Student {
         return DNI;
     }
 
+    public static void setMark1(float mark1){
+        mark1 = mark1;
+    }
+
     public String toString() {
         return DNI + " " + completeName + " " + age + " " + birthday + " " + subject1 + " " + mark1 + " " + subject2 + " " + mark2;
     }
