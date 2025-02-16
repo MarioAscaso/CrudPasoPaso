@@ -13,6 +13,7 @@ public class Main {
     public static final int REGISTER = 1;
     public static final int LIST = 2;
     public static final int DELETE = 3;
+    public static final int MODIFY = 4;
     public static final int OUT = 5;
 
     private static List<Student> students;
@@ -51,6 +52,8 @@ public class Main {
             case DELETE:
                 deleteStudent();
                 break;
+            case MODIFY: modificateMark();
+                break;
             case OUT:
                 Output.logout();
                 break;
@@ -82,6 +85,24 @@ public class Main {
             Student student = iterator.next();
             if(Student.getDNI().equals(toFoundDNI)){
                 iterator.remove();
+                found = true;
+            }
+        }
+    }
+
+    private static void modificateMark(){
+
+        iterator = students.iterator();
+        boolean found = false;
+        String toFoundDNI;
+        Output.askDNI();
+        toFoundDNI = Input.getText();
+        while(iterator.hasNext() && !found) {
+            Student student = iterator.next();
+            if(Student.getDNI().equals(toFoundDNI)){
+                Output.askMark();
+                float mark1 = Input.getValueFloat();
+                Student.setMark1(mark1);
                 found = true;
             }
         }
