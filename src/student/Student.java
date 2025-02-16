@@ -10,7 +10,7 @@ public class Student {
     String subject2;
     float mark2;
 
-    public Student(String DNI, String nombreCompleto, int age, String birthday, String subject1, float mark1, String subject2, float mark2){
+    public Student(String DNI, String nombreCompleto, int age, String birthday, String subject1, float mark1, String subject2, float mark2) {
         this.DNI = DNI;
         this.completeName = nombreCompleto;
         this.age = age;
@@ -19,6 +19,14 @@ public class Student {
         this.mark1 = mark1;
         this.subject2 = subject2;
         this.mark2 = mark2;
+    }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public String toString() {
+        return DNI + " " + completeName + " " + age + " " + birthday + " " + subject1 + " " + mark1 + " " + subject2 + " " + mark2;
     }
 }
 

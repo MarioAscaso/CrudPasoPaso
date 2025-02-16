@@ -6,13 +6,16 @@ import student.Student;
 import validator.Validator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
     public static final int REGISTER = 1;
+    public static final int LIST = 2;
     public static final int OUT = 5;
 
     private static List<Student> students;
+    private static Iterator<Student> iterator;
 
     public static void main(String[] args) {
         students = new ArrayList<>();
@@ -31,16 +34,21 @@ public class Main {
         return optionMenu;
     }
 
-    private static int showAndAskOption(){
+    private static int showAndAskOption() {
         Output.showMenu();
         return Input.getValueInt();
     }
 
-    private static void action(int opcionMenu){
-        switch (opcionMenu) {
-            case REGISTER: registerStudent();
+    private static void action(int optionMenu) {
+        switch (optionMenu) {
+            case REGISTER:
+                registerStudent();
                 break;
-            case OUT: Output.logout();
+            case LIST:
+                listStudents(students);
+                break;
+            case OUT:
+                Output.logout();
                 break;
             default:
         }
@@ -48,7 +56,16 @@ public class Main {
 
     private static void registerStudent() {
         Object[] data = askData();
-        students.add(new Student((String) data[0], (String) data[1], (int) data[2], (String) data[3], (String) data[4], (float)data[5], (String) data[6], (float) data[7]));
+        students.add(new Student((String) data[0], (String) data[1], (int) data[2], (String) data[3], (String) data[4], (float) data[5], (String) data[6], (float) data[7]));
+    }
+
+    private static void listStudents(List<Student> students) {
+        iterator = students.iterator();
+        Output.listHeaderStudents();
+        while (iterator.hasNext()) {
+            Student student = iterator.next();
+            Output.listStudents(student);
+        }
     }
 
     private static Object[] askData() {
