@@ -2,6 +2,7 @@ package organizer;
 
 import student.Student;
 
+/* Duplicidad de código */
 public class Comparator {
 
     // Devuelve true si s1 debe ir DESPUÉS de s2
