@@ -29,11 +29,15 @@ public class Main {
         studentsList = StudentList.addUsers();
         int optionMenu;
 
-        //CÓDIGO PARA COMPROBAR QUE FUNCIONA EL METODO DE ORDENACIÓN
+        System.out.println("ANTES DE ORDENAR:");
         listStudents(studentsList);
-        studentsListOrganized = Organizer.sortByBubble(studentsList);
-        listStudents(studentsListOrganized);
-        
+
+        Organizer.sortByBubble(studentsList); // no hace falta guardar el resultado
+
+        System.out.println("DESPUÉS DE ORDENAR:");
+        listStudents(studentsList);
+
+
         do {
             optionMenu = getOptionMenu();
             action(optionMenu);
