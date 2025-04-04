@@ -12,10 +12,4 @@ public class Interchange {
         student2 = student;
     }
 
-    public static void swap(Integer[] data, int a, int b) {
-        int temp = data[a];
-        data[a] = data[b];
-        data[b] = temp;
-    }
-
 }

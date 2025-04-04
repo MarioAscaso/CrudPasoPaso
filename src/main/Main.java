@@ -2,8 +2,10 @@ package main;
 
 import input.Input;
 import organizer.BinarySort;
+import organizer.Organizer;
 import output.Output;
 import student.Student;
+import student.StudentList;
 import validator.Validator;
 
 import java.util.ArrayList;
@@ -19,18 +21,26 @@ public class Main {
     public static final int OUT = 6;
 
     public static List<Student> studentsList;
+    public static List<Student> studentsListOrganized;
     public static Iterator<Student> iterator;
+    //public static Student student;
 
     public static void main(String[] args) {
-        studentsList = new ArrayList<>();
+        studentsList = StudentList.addUsers();
         int optionMenu;
+
+        //CÓDIGO PARA COMPROBAR QUE FUNCIONA EL METODO DE ORDENACIÓN
+        listStudents(studentsList);
+        studentsListOrganized = Organizer.sortByBubble(studentsList);
+        listStudents(studentsListOrganized);
+        
         do {
-            optionMenu = getOpcionMenu();
+            optionMenu = getOptionMenu();
             action(optionMenu);
         } while (!Validator.userWantsLogOut(optionMenu));
     }
 
-    private static int getOpcionMenu() {
+    private static int getOptionMenu() {
         int optionMenu;
         do {
             optionMenu = showAndAskOption();
@@ -58,7 +68,7 @@ public class Main {
                 modificateMark();
                 break;
             case SEARCH:
-                searchUser();
+                //searchUser();
                 break;
             case OUT:
                 Output.logout();
@@ -72,8 +82,8 @@ public class Main {
         studentsList.add(new Student((String) data[0], (String) data[1], (String) data[2], (String) data[3], (int) data[4], (String) data[5], (String) data[6], (float) data[7], (String) data[8], (float) data[9]));
     }
 
-    private static void listStudents(List<Student> students) {
-        iterator = students.iterator();
+    private static void listStudents(List<Student> list) {
+        iterator = list.iterator();
         Output.listHeaderStudents();
         while (iterator.hasNext()) {
             Student student = iterator.next();
@@ -91,13 +101,13 @@ public class Main {
             Student student = iterator.next();
             if (student.getDNI().equals(toFoundDNI)) {
                 iterator.remove();
+                Output.userDeleted();
                 found = true;
             }
         }
     }
 
     private static void modificateMark() {
-
         iterator = studentsList.iterator();
         boolean found = false;
         String toFoundDNI;
@@ -108,49 +118,46 @@ public class Main {
             if (student.getDNI().equals(toFoundDNI)) {
                 Output.askMark();
                 float mark1 = Input.getValueFloat();
-                Student.setMark1(mark1);
+                student. setMark1(mark1);
+                Output.markModificated();
                 found = true;
             }
         }
     }
 
-    private static void searchUser() {
+    /*private static void searchUser() {
         Student student;
         boolean found = false;
         Output.askFirstSurnameStudentToSearch();
         String surnameToSearch = Input.getText();
         student = BinarySort.binarySort(studentsList, surnameToSearch);
         if(found){
-            Output.showStudent(student);
+            Output.listStudents(student);
         }
-    }
+    }*/
 
     private static Object[] askData() {
-        Object[] data = new Object[8];
+        Object[] data = new Object[10];
         Output.askDNI();
-        String DNI = Input.getText();
-        data[0] = DNI;
-        Output.askCompleteName();
-        String name = Input.getText();
-        data[1] = name;
+        data[0] = Input.getText();
+        Output.askName();
+        data[1] = Input.getText();
+        Output.askFirstSurname();
+        data[2] = Input.getText();
+        Output.askSecondSurname();
+        data[3] = Input.getText();
         Output.askAge();
-        int age = Input.getValueInt();
-        data[2] = age;
+        data[4] = Input.getValueInt();
         Output.askBirthday();
-        String birthday = Input.getText();
-        data[3] = birthday;
+        data[5] = Input.getText();
         Output.askSubject();
-        String subject1 = Input.getText();
-        data[4] = subject1;
+        data[6] = Input.getText();
         Output.askMark();
-        float mark1 = Input.getValueFloat();
-        data[5] = mark1;
+        data[7] = Input.getValueFloat();
         Output.askSubject();
-        String subject2 = Input.getText();
-        data[6] = subject2;
+        data[8] = Input.getText();
         Output.askMark();
-        float mark2 = Input.getValueFloat();
-        data[7] = mark2;
+        data[9] = Input.getValueFloat();
 
         return data;
     }
