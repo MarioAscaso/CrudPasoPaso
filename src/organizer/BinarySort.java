@@ -6,9 +6,8 @@ import java.util.List;
 
 public class BinarySort {
 
-    /*public static Student binarySort(List<Student> studentList, String surname) {
+    public static Student studentSearch(List<Student> studentList, String surname) {
         Student student = null;
-        Comparator comparator = new Comparator();
         int i = 0;
         int l = studentList.size() - 1;
         boolean found = false;
@@ -16,23 +15,19 @@ public class BinarySort {
         while (i <= l && !found) {
             int j = i + (l - i) / 2;
 
-            if (studentList.get(j).getFirstSurname() == surname) {
+            if (studentList.get(j).getFirstSurname().equals(surname)) {
                 student = studentList.get(j);
                 found = true;
             }
             if (!found) {
-                if (!comparator.isFirstWordGreaterThanTheSecondA(studentList.get(j), surname)) {
+                if (Comparator.isFirstSurnameGreater(studentList.get(j), surname)) {
                     i = j + 1;
                 } else {
                     l = j - 1;
                 }
             }
         }
-        if (found) {
-            return student;
-        } else {
-            return null;
-        }
-    }*/
+        return student;
+    }
 
 }
