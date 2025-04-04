@@ -7,29 +7,24 @@ import java.util.List;
 public class Organizer {
 
     public static List<Student> sortByBubble(List<Student> studentList) {
-
         Comparator comparator = new Comparator();
-        Student student;
+        int n = studentList.size();
 
-        int numberOfStudents = studentList.size();
-        for (int i = 0; i < numberOfStudents; i++) {
-            for (int j = 0; j < numberOfStudents - 1; j++) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                Student current = studentList.get(j);
+                Student next = studentList.get(j + 1);
 
-                if (studentList.get(j).getFirstSurname().equals(studentList.get(j + 1).getFirstSurname())) {
-                    for (int x = 0; x < numberOfStudents; x++) {
-                        for (int y = 0; y < numberOfStudents - 1; y++) {
-                            if (!comparator.isFirstWordGreaterThanTheSecondB(studentList.get(y), (studentList.get(y + 1)))) {
-                                Interchange.swap(studentList, studentList.get(y), studentList.get(y + 1));
-                            }
-                        }
-                    }
+                if (comparator.isFirstSurnameGreater(current, next)) {
+                    Interchange.swap(studentList, j, j + 1);
                 }
-                if (!comparator.isFirstWordGreaterThanTheSecondA(studentList.get(j), (studentList.get(j + 1)))) {
-                    Interchange.swap(studentList, studentList.get(j), studentList.get(j + 1));
+                else if (current.getFirstSurname().equalsIgnoreCase(next.getFirstSurname())
+                         && comparator.isSecondSurnameGreater(current, next)) {
+                    Interchange.swap(studentList, j, j + 1);
                 }
             }
         }
         return studentList;
     }
-
 }
+
