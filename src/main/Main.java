@@ -28,20 +28,16 @@ public class Main {
     public static void main(String[] args) {
         studentsList = StudentList.addUsers();
         int optionMenu;
-
-        System.out.println("ANTES DE ORDENAR:");
-        listStudents(studentsList);
-
-        Organizer.sortByBubble(studentsList); // no hace falta guardar el resultado
-
-        System.out.println("DESPUÉS DE ORDENAR:");
-        listStudents(studentsList);
-
-
+        boolean userWantsQuit = false;
         do {
-            optionMenu = getOptionMenu();
-            action(optionMenu);
-        } while (!Validator.userWantsLogOut(optionMenu));
+            optionMenu = getOpcionMenu();
+            if (Validator.userWantsLogOut(optionMenu)) {
+                Output.logout();
+                userWantsQuit = true;
+            } else {
+                action(optionMenu);
+            }
+        } while (!userWantsQuit);
     }
 
     private static int getOptionMenu() {
@@ -74,10 +70,8 @@ public class Main {
             case SEARCH:
                 //searchUser();
                 break;
-            case OUT:
-                Output.logout();
-                break;
             default:
+                break;
         }
     }
 
