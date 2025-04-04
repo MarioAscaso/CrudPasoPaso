@@ -8,7 +8,6 @@ import student.Student;
 import student.StudentList;
 import validator.Validator;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,22 +20,11 @@ public class Main {
     public static final int OUT = 6;
 
     public static List<Student> studentsList;
-    public static List<Student> studentsListOrganized;
     public static Iterator<Student> iterator;
-    //public static Student student;
 
     public static void main(String[] args) {
         studentsList = StudentList.addUsers();
         int optionMenu;
-
-        System.out.println("ANTES DE ORDENAR:");
-        listStudents(studentsList);
-
-        Organizer.sortByBubble(studentsList); // no hace falta guardar el resultado
-
-        System.out.println("DESPUÉS DE ORDENAR:");
-        listStudents(studentsList);
-
 
         do {
             optionMenu = getOptionMenu();
@@ -72,7 +60,7 @@ public class Main {
                 modificateMark();
                 break;
             case SEARCH:
-                //searchUser();
+                searchUser();
                 break;
             case OUT:
                 Output.logout();
@@ -122,23 +110,28 @@ public class Main {
             if (student.getDNI().equals(toFoundDNI)) {
                 Output.askMark();
                 float mark1 = Input.getValueFloat();
-                student. setMark1(mark1);
+                student.setMark1(mark1);
                 Output.markModificated();
                 found = true;
             }
         }
     }
 
-    /*private static void searchUser() {
+    private static void searchUser() {
+        Organizer.sortListAlphabetically(studentsList);
+        listStudents(studentsList);
         Student student;
         boolean found = false;
         Output.askFirstSurnameStudentToSearch();
         String surnameToSearch = Input.getText();
-        student = BinarySort.binarySort(studentsList, surnameToSearch);
-        if(found){
+        student = BinarySort.studentSearch(studentsList, surnameToSearch);
+        if (student == null) {
+            Output.studentNotFound();
+        }else {
+            Output.separator();
             Output.listStudents(student);
         }
-    }*/
+    }
 
     private static Object[] askData() {
         Object[] data = new Object[10];

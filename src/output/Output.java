@@ -30,6 +30,7 @@ public class Output {
     public static void askNameStudentToSearch() {System.out.print("INTRODUZCA NOMBRE DEL ALUMNO A BUSCAR: ");}
     public static void userDeleted(){System.out.println("USUARIO ELIMINADO");}
     public static void markModificated(){System.out.println("NOTA CAMBIADA");}
+    public static void studentNotFound(){System.out.println("ESTUDIANTE NO EXISTENTE");}
     public static void logout() {System.out.println("CIERRE DE SESIÓN");}
 
     public static void listStudents(Student student) {
@@ -44,6 +45,10 @@ public class Output {
         String separator = "+-----------+----------------------------+------+------------+--------------+--------+--------------------+--------+";
         System.out.println(separator);
         System.out.printf(format, "DNI", "NOMBRE ALUMNO", "EDAD", "FECHA NAC.", "ASIGNATURA 1", "NOTA 1", "ASIGNATURA 2", "NOTA 2");
+        System.out.println(separator);
+    }
+    public static void separator(){
+        String separator = "+-----------+----------------------------+------+------------+--------------+--------+--------------------+--------+";
         System.out.println(separator);
     }
 }

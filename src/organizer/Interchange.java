@@ -4,6 +4,7 @@ import student.Student;
 
 import java.util.List;
 
+//¿PODRÍA SER UN RECORD?
 public class Interchange {
 
     public static void swap(List<Student> list, int i, int j) {
