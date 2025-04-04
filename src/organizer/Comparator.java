@@ -4,60 +4,53 @@ import student.Student;
 
 public class Comparator {
 
-    public boolean comparatorFirstSurnameByPriorityAlphabetic(Student student1, Student student2){
-        boolean goesFirst = false;
-        char [] lettersOfSurname1;
-        char [] lettersOfSurname2;
 
-        String firstSurname1 = student1.getFirstSurname();
-        String firstSurname2 = student2.getFirstSurname();
+    public boolean isFirstWordGreaterThanTheSecondA(Student student1, Student student2) {
+        boolean isFirstWordGreaterThanTheSecond = false;
 
-        lettersOfSurname1 = firstSurname1.toCharArray();
-        lettersOfSurname2 = firstSurname2.toCharArray();
+        char[] lettersOfSurname1 = student1.getFirstSurname().toCharArray();
+        char[] lettersOfSurname2 = student2.getFirstSurname().toCharArray();
 
-        for(int i = 0; i < firstSurname1.length(); i++){
-            if(lettersOfSurname1[i] > lettersOfSurname2[i]){
-                goesFirst = true;
+        if (lettersOfSurname1[0] < lettersOfSurname2[0]) {
+            isFirstWordGreaterThanTheSecond = true;
+        } else {
+            if (lettersOfSurname1[0] == lettersOfSurname2[0]) {
+                if (lettersOfSurname1[1] < lettersOfSurname2[1]) {
+                    isFirstWordGreaterThanTheSecond = true;
+                } else {
+                    if (lettersOfSurname1[1] == lettersOfSurname2[1]) {
+                        if (lettersOfSurname1[2] < lettersOfSurname2[2]) {
+                            isFirstWordGreaterThanTheSecond = true;
+                        }
+                    }
+                }
             }
         }
-        return goesFirst;
+        return isFirstWordGreaterThanTheSecond;
     }
 
-    public boolean comparatorSecondSurnameByPriorityAlphabetic(Student student1, Student student2){
-        boolean goesFirst = false;
-        char [] lettersOfSurname1;
-        char [] lettersOfSurname2;
+    public boolean isFirstWordGreaterThanTheSecondB(Student student1, Student student2) {
+        boolean isFirstWordGreaterThanTheSecond = false;
 
-        String secondSurname1 = student1.getFirstSurname();
-        String secondSurname2 = student2.getFirstSurname();
+        char[] lettersOfSurname1 = student1.getSecondSurname().toCharArray();
+        char[] lettersOfSurname2 = student2.getSecondSurname().toCharArray();
 
-        lettersOfSurname1 = secondSurname1.toCharArray();
-        lettersOfSurname2 = secondSurname2.toCharArray();
-
-        for(int i = 0; i < secondSurname1.length(); i++){
-            if(lettersOfSurname1[i] > lettersOfSurname2[i]){
-                goesFirst = true;
+        if (lettersOfSurname1[0] < lettersOfSurname2[0]) {
+            isFirstWordGreaterThanTheSecond = true;
+        } else {
+            if (lettersOfSurname1[0] == lettersOfSurname2[0]) {
+                if (lettersOfSurname1[1] < lettersOfSurname2[1]) {
+                    isFirstWordGreaterThanTheSecond = true;
+                } else {
+                    if (lettersOfSurname1[1] == lettersOfSurname2[1]) {
+                        if (lettersOfSurname1[2] < lettersOfSurname2[2]) {
+                            isFirstWordGreaterThanTheSecond = true;
+                        }
+                    }
+                }
             }
         }
-        return goesFirst;
-    }
-
-    public boolean comparatorFirstSurnameByPriorityAlphabeticB(Student student1, String surname){
-        boolean goesFirst = false;
-        char [] lettersOfSurname1;
-        char [] lettersOfSurname2;
-
-        String firstSurname1 = student1.getFirstSurname();
-
-        lettersOfSurname1 = firstSurname1.toCharArray();
-        lettersOfSurname2 = surname.toCharArray();
-
-        for(int i = 0; i < firstSurname1.length(); i++){
-            if(lettersOfSurname1[i] > lettersOfSurname2[i]){
-                goesFirst = true;
-            }
-        }
-        return goesFirst;
+        return isFirstWordGreaterThanTheSecond;
     }
 
 }

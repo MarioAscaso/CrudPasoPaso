@@ -6,9 +6,10 @@ import java.util.List;
 
 public class Organizer {
 
-    public List<Student> sortByBubble(List<Student> studentList, Student student) {
+    public static List<Student> sortByBubble(List<Student> studentList) {
 
         Comparator comparator = new Comparator();
+        Student student;
 
         int numberOfStudents = studentList.size();
         for (int i = 0; i < numberOfStudents; i++) {
@@ -17,13 +18,13 @@ public class Organizer {
                 if (studentList.get(j).getFirstSurname().equals(studentList.get(j + 1).getFirstSurname())) {
                     for (int x = 0; x < numberOfStudents; x++) {
                         for (int y = 0; y < numberOfStudents - 1; y++) {
-                            if (comparator.comparatorSecondSurnameByPriorityAlphabetic(studentList.get(y), (studentList.get(y + 1)))) {
+                            if (!comparator.isFirstWordGreaterThanTheSecondB(studentList.get(y), (studentList.get(y + 1)))) {
                                 Interchange.swap(studentList, studentList.get(y), studentList.get(y + 1));
                             }
                         }
                     }
                 }
-                if (comparator.comparatorFirstSurnameByPriorityAlphabetic(studentList.get(j), (studentList.get(j + 1)))) {
+                if (!comparator.isFirstWordGreaterThanTheSecondA(studentList.get(j), (studentList.get(j + 1)))) {
                     Interchange.swap(studentList, studentList.get(j), studentList.get(j + 1));
                 }
             }
