@@ -16,5 +16,4 @@ public class Comparator {
         return s1.getSecondSurname().compareToIgnoreCase(s2.getSecondSurname()) > 0;
     }
 
-
 }
