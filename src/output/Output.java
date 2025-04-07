@@ -31,6 +31,17 @@ public class Output {
     public static void userDeleted(){System.out.println("USUARIO ELIMINADO");}
     public static void markModificated(){System.out.println("NOTA CAMBIADA");}
     public static void studentNotFound(){System.out.println("ESTUDIANTE NO EXISTENTE");}
+
+    public static void showMenuStudent(){
+        System.out.print("""
+                1. - MODIFICAR NOTA 1
+                2. - MODIFICAR NOTA 2
+                3. - DAR DE BAJA ALUMNO
+                4. - NADA
+                
+                ELIJA OPCIÓN A REALIZAR:""");
+    }
+
     public static void logout() {System.out.println("CIERRE DE SESIÓN");}
 
     public static void listStudents(Student student) {
