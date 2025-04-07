@@ -2,6 +2,7 @@ package organizer;
 
 import student.Student;
 
+/* Duplicated code */
 public class Comparator {
 
     public static boolean isFirstSurnameGreater(Student s1, Student s2) {
