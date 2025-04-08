@@ -5,6 +5,7 @@ import output.Output;
 import studentManager.*;
 import validator.Validator;
 
+
 public class Main {
     public static final int REGISTER = 1;
     public static final int LIST = 2;
